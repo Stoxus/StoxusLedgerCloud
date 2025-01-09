@@ -1,0 +1,5 @@
+# Inputrc configurations
+
+# Enable history search in Stoxus AI terminal
+"\e[A": history-search-backward
+"\e[B": history-search-forward
