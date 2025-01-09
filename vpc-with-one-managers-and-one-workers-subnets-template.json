@@ -1,0 +1,147 @@
+{
+    "StoxusAIConfig": {
+      "general": {
+        "projectName": "Stoxus AI",
+        "version": "1.0.0",
+        "description": "An advanced AI platform for data analysis and decentralized computation.",
+        "maintainer": "contact@stoxus.com",
+        "repository": "https://github.com/StoxusAI"
+      },
+      "security": {
+        "authentication": {
+          "type": "OAuth2",
+          "providers": {
+            "github": {
+              "clientId": "github-client-id",
+              "clientSecret": "github-client-secret"
+            },
+            "google": {
+              "clientId": "google-client-id",
+              "clientSecret": "google-client-secret"
+            }
+          }
+        },
+        "encryption": {
+          "dataEncryption": "AES-256",
+          "transportEncryption": "TLS 1.3"
+        }
+      },
+      "deployment": {
+        "cloudProvider": "Custom",
+        "regions": ["us-east-1", "us-west-2", "eu-central-1"],
+        "instanceTypes": {
+          "manager": "t3.medium",
+          "worker": "t3.large"
+        },
+        "autoScaling": {
+          "enabled": true,
+          "minWorkers": 2,
+          "maxWorkers": 20,
+          "scaleDownIdleTime": 1800
+        }
+      },
+      "resources": {
+        "vpc": {
+          "cidrBlock": "10.0.0.0/16",
+          "subnets": {
+            "public": {
+              "cidrBlock": "10.0.1.0/24",
+              "availabilityZone": "us-east-1a"
+            },
+            "private": {
+              "cidrBlock": "10.0.2.0/24",
+              "availabilityZone": "us-east-1b"
+            }
+          }
+        },
+        "natGateway": {
+          "enabled": true,
+          "eipAllocationId": "eip-alloc-12345678"
+        }
+      },
+      "systemSettings": {
+        "idleTimeout": 3600,
+        "logging": {
+          "level": "INFO",
+          "logToFile": true,
+          "logFilePath": "/var/log/stoxus_ai.log"
+        },
+        "monitoring": {
+          "enabled": true,
+          "dashboardURL": "https://monitoring.stoxus.com"
+        }
+      },
+      "jupyterHub": {
+        "baseURL": "https://hub.stoxus.com",
+        "authenticator": {
+          "type": "GitHubOAuthenticator",
+          "oauthCallbackURL": "https://hub.stoxus.com/hub/oauth_callback",
+          "adminUsers": ["admin1", "admin2"]
+        },
+        "culling": {
+          "idleTimeout": 3600,
+          "cullInterval": 300
+        }
+      },
+      "userSettings": {
+        "defaultQuota": {
+          "cpu": "2 vCPUs",
+          "memory": "4 GB",
+          "diskSpace": "10 GB"
+        },
+        "profileOptions": [
+          {
+            "name": "Standard",
+            "cpu": "2 vCPUs",
+            "memory": "4 GB",
+            "diskSpace": "10 GB"
+          },
+          {
+            "name": "High Memory",
+            "cpu": "2 vCPUs",
+            "memory": "16 GB",
+            "diskSpace": "20 GB"
+          },
+          {
+            "name": "GPU Enabled",
+            "cpu": "4 vCPUs",
+            "memory": "32 GB",
+            "diskSpace": "50 GB",
+            "gpu": "1 NVIDIA Tesla T4"
+          }
+        ]
+      },
+      "notifications": {
+        "email": {
+          "enabled": true,
+          "smtpServer": "smtp.stoxus.com",
+          "port": 587,
+          "senderEmail": "noreply@stoxus.com",
+          "credentials": {
+            "username": "smtp-user",
+            "password": "smtp-password"
+          }
+        },
+        "webhooks": {
+          "enabled": true,
+          "urls": ["https://webhook1.stoxus.com", "https://webhook2.stoxus.com"]
+        }
+      },
+      "maintenance": {
+        "backup": {
+          "frequency": "daily",
+          "retentionDays": 30,
+          "storageBucket": "stoxus-backups"
+        },
+        "updates": {
+          "autoUpdate": true,
+          "updateWindow": {
+            "day": "Sunday",
+            "startTime": "02:00",
+            "durationHours": 2
+          }
+        }
+      }
+    }
+  }
+  
